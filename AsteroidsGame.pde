@@ -74,7 +74,13 @@ public void keyPressed()
   }     
 }
 
-
+/*class asteroids extends Floater
+{
+  public asteroid()
+  {
+    
+  }
+}  */
 
 class SpaceShip extends Floater  
 {   
@@ -114,6 +120,7 @@ class SpaceShip extends Floater
   setDirectionY(0);
   setX((int)(Math.random()*600)+1);
   setY((int)(Math.random()*600)+1);
+  setPointDirection((int)(Math.random()*360));
 }
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
