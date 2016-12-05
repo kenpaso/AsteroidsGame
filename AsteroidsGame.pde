@@ -2,7 +2,7 @@
 SpaceShip rock;
 Star[] nightSky = new Star[500];
 
-
+ArrayList <Bullet> gun = new ArrayList <Bullet>();
 ArrayList <Asteroid> theList = new ArrayList <Asteroid>();
 public void setup() 
 {
@@ -10,15 +10,17 @@ public void setup()
   size(600,600);
   background(0);
   rock = new SpaceShip();
+
   for(int i = 0; i < nightSky.length; i++)
   {
     nightSky [i] = new Star();
   }
-  for(int i = 0; i < 15; i++)
+  for(int i = 0; i < 1000; i++)
   {
     theList.add(new Asteroid());
   }
 }
+
 public void draw() 
 {
   //your code here
@@ -28,18 +30,33 @@ public void draw()
     nightSky[i].show();
   }
 
-for(int i = 0; i< theList.size(); i ++)
-{
-  theList.get(i).show();
-  theList.get(i).move();
-}
+
   for(int i = 0; i< theList.size(); i ++)
-    if(dist(rock.getX(),rock.getY(), theList.get(i).getX(),theList.get(i).getY()) < 20)
+  {
+    theList.get(i).show();
+    theList.get(i).move();
+  }
+
+  for(int i = 0; i< gun.size(); i ++)
+  {
+    gun.get(i).show();
+    gun.get(i).move();
+  }
+for(int k = 0; k < gun.size(); k++)
+{
+  for(int i = 0; i< theList.size(); i ++)
+    //if(dist(rock.getX(),rock.getY(), theList.get(i).getX(),theList.get(i).getY()) < 20)
+    //{
+      //theList.remove(i);
+    //}
+    if(dist(gun.get(k).getX(),gun.get(k).getY(), theList.get(i).getX(),theList.get(i).getY()) < 20)
     {
       theList.remove(i);
     }
+}
   rock.show();
   rock.move();
+
 
 }
 
@@ -60,7 +77,12 @@ class Star
 }
 public void keyPressed()
 {
-  
+
+  if(key == ' ')
+  { 
+    gun.add(new Bullet(rock));
+
+  }   
   if(keyCode == UP)
   {
     rock.accelerate(1);
@@ -79,10 +101,10 @@ public void keyPressed()
   }
    else if(key == 'b')
   { 
-     rock.setDirectionX(0);
+    rock.setDirectionX(0);
    rock.setDirectionY(0);
   }   
-   else if(key == ' ')
+   else if(key == 'h')
   { 
     rock.hyperspace();
   }      
@@ -90,7 +112,8 @@ public void keyPressed()
   { 
     rock.accelerate(500);
 
-  }     
+  }    
+
 }
 
 class Asteroid extends Floater
