@@ -12,7 +12,7 @@ class Bullet extends Floater
 	public void show ()
 	{
 		fill(255);
-		ellipse((float)myCenterX,(float)myCenterY,3,12);
+		ellipse((float)myCenterX,(float)myCenterY,7,7);
 	} 
 	public void move ()
 	{
